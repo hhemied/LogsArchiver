@@ -1,4 +1,7 @@
 #!/bin/bash
+# Author: Hazem Hemied
+# hazem.hemied@gmail.com
+
 for c in $(ls .); do
 
 	date=$(ls -ltc --full-time $c | awk '{print $6}')
