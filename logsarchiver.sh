@@ -2,7 +2,12 @@
 # Author: Hazem Hemied
 # hazem.hemied@gmail.com
 
-for c in $(ls .); do
+echo "Please run this script in the directory which has the log files.."
+sleep 5
+
+current_dir="."
+store_to=
+for c in $(ls $current_dir); do
 
 	date=$(ls -ltc --full-time $c | awk '{print $6}')
 	year=$(echo $date | cut -d '-' -f 1)
@@ -13,18 +18,18 @@ for c in $(ls .); do
 		for y in $year; do
 			if [[ ! -d $y ]]; then
 
-				mkdir -p $y
+				mkdir -p $store_to\/$y
 
 				if [[ ! -d $($y\/$month) ]]; then
 
-					mkdir -p $y\/$month
+					mkdir -p $store_to\/$y\/$month
 
 					if [[ ! -d $($y\/$month\/$day) ]]; then
-						mkdir -p $y\/$month\/$day
+						mkdir -p $store_to\/$y\/$month\/$day
 
-						if [[ $date -eq $y\-$month\-$day ]]; then
+						if [[ $date -eq $store_to\/$y\-$month\-$day ]]; then
 							echo 'true'
-							cp -r $c $y\/$month\/$day
+							cp -r $c $store_to\/$y\/$month\/$day
 						else
 							echo 'false'
 						fi
