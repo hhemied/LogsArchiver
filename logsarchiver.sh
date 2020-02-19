@@ -6,7 +6,7 @@ echo "Please run this script in the directory which has the log files.."
 sleep 5
 
 current_dir="."
-store_to=
+store_to="."
 for c in $(ls $current_dir); do
 
 	date=$(ls -ltc --full-time $c | awk '{print $6}')
